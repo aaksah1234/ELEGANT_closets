@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All mails</title>
+    <style>
+        body{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: url('/images/Gulla-Jonsdottir_NYPENTHOUSE_1-1000x660.jpg');
+            background-size: contain;
+            background-position: center;
+        }
+        .cover{
+            width: 80%;
+            height: 60%;
+            background-color: white;
+        }
+        .table{
+            width: 80%;
+            height: 80%;
+            list-style-type: none;
+        }
+        .one{
+            display: inline-block;
+            width: 33%;
+            font-size: 1vw;
+        }
+        .head div{
+            font-size: 2vw;
+        }
+    </style>
+</head>
+<body>
+    <div class="cover">
+        <ul class="table">
+            <li class="head"><div class="one">Names</div><div class="one">E-mail</div><div class="one">Message</div></li>   
+            <% contacts.forEach((contact)=>{%>
+               <li><div class="one"><%= contact.name %></div><div class="one"><%= contact.email %></div><div class="one"><%= contact.message %></div></li>   
+              <%})%>
+        </ul>
+    </div>
+    
+    
+</body>
+</html>
