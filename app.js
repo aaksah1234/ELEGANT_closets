@@ -15,14 +15,14 @@ app.use(bodyParser.urlencoded({extended:true}));
 
 app.get('/contact',(req,res,next)=>{
     db.all('SELECT * FROM Messages',(err,rows)=>{
-        res.render('all_mails',{contacts:rows});
+        res.render('contact/all_mails',{contacts:rows});
     });
 });
 
 app.post('/contact',(req,res,next)=>{
     let obj=req.body;
     if(!obj.name||!obj.email||!obj.msg){
-        res.render('success',{msg:'all fields are required !!!'});
+        res.status(400).send();
     }
     //console.log(req.body);
     else{
@@ -36,7 +36,7 @@ app.post('/contact',(req,res,next)=>{
                 next(err);
             }
             db.get('SELECT * FROM Messages WHERE id=$id',{$id:this.lastID},(err,row)=>{
-                res.render('success',{msg:'Your message is successfully sent ! '});
+                res.render('contact/success',{msg:'Your message is successfully sent ! '});
                 //res.status(201).json({contact:row});
             });
         });
