@@ -1,0 +1,47 @@
+*{
+    margin:0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.cover{
+    padding-left: 10%;
+    padding-right: 10%;
+    margin-top: 2%;
+}
+.item{
+    height:30vw;
+    width: 80%;
+    margin: 2%;
+    border: 0.06vw rgb(128, 128, 128) solid;
+}
+.image{
+    background-size: cover;
+    height: 70%;
+}
+.desc{
+    text-align: center;
+    height: 30%;
+    font-size: 1vw;
+    font-weight: 500;
+}
+.desc p{
+    margin: 0;
+}
+.desc a{
+    width: 100%;
+    display: inline-block;
+    padding: 2%;
+    font-weight: 600;
+    font-size: 1.2vw;
+    margin-top: 0.6vw;
+}
+.desc a:hover{
+    width: 100%;
+    background-color: teal;
+    color: white;
+    text-decoration: none;
+    padding: 2%;
+    font-weight: 700;
+    font-size: 1.2vw;
+    display: inline-block;
+}
