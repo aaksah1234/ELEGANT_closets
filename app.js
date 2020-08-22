@@ -3,7 +3,32 @@ const app=express();
 const bodyParser=require('body-parser');
 const errorhandler=require('errorhandler');
 const sqlite3=require('sqlite3');
+const session=require('express-session');
+const passport=require('passport');
+const flash=require('connect-flash');
+
+
 const db=new sqlite3.Database(process.env.TEST_DATABASE||'./database.sqlite');
+
+const contactRouter=require('./routes/contact');
+const shopRouter=require('./routes/shop');
+const bookRouter=require('./routes/book');
+const userRouter=require('./routes/user');
+
+require('./config/passport')(passport);
+
+app.use(session({
+    name:'session-id',
+    secret:'12345-67890',
+    saveUninitialized:false,
+    resave:false
+}));
+
+app.use(passport.initialize());
+app.use(passport.session());
+app.use(flash());
+
+
 
 app.set('view engine','ejs');
 app.set('views',__dirname+'/views');
@@ -13,36 +38,10 @@ app.use(express.static('public'));
 
 app.use(bodyParser.urlencoded({extended:true}));
 
-app.get('/contact',(req,res,next)=>{
-    db.all('SELECT * FROM Messages',(err,rows)=>{
-        res.render('contact/all_mails',{contacts:rows});
-    });
-});
-
-app.post('/contact',(req,res,next)=>{
-    let obj=req.body;
-    if(!obj.name||!obj.email||!obj.msg){
-        res.status(400).send();
-    }
-    //console.log(req.body);
-    else{
-        db.run('INSERT INTO Messages (name,email,message) VALUES ($name,$email,$msg)',
-        {
-            $name:obj.name,
-            $email:obj.email,
-            $msg:obj.msg
-        },function(err){
-            if(err){
-                next(err);
-            }
-            db.get('SELECT * FROM Messages WHERE id=$id',{$id:this.lastID},(err,row)=>{
-                res.render('contact/success',{msg:'Your message is successfully sent ! '});
-                //res.status(201).json({contact:row});
-            });
-        });
-    }
-
-});
+app.use('/user',userRouter);
+app.use('/contact',contactRouter);
+app.use('/shop',shopRouter);
+app.use('/book',bookRouter);
 
 app.use(errorhandler());
 

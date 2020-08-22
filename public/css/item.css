@@ -1,10 +1,10 @@
 *{
-    margin:0;
-    padding: 0;
     box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
 .head{
-    background-image:url('/images/z.jpg');
+    background-image:url('/images/x.jpg');
     color:white;
     font-size:2.5vw;
     background-attachment: fixed;
@@ -12,7 +12,6 @@
     height: 25vw;
     background-size: cover;
 }
-
 .head div{
     background-color: rgba(0, 0, 0,0.5);
     text-align:center;
@@ -30,16 +29,10 @@
     margin-top: 5%;
     margin-bottom: 5%;
 }
-.item{
-    height:33vw;
-    width: 80%;
-    margin: 2%;
-    border: 0.06vw rgb(128, 128, 128) solid;
-}
 .image{
-    height: 70%;
+    border: 0.1vw grey solid;
+    height: 30vw;
     overflow: hidden;
-    
 }
 .image img{
     width: 100%;
@@ -49,33 +42,39 @@
 .image img:hover{
     transform: scale(1.2,1.2);
 }
-.desc{
-    text-align: center;
-    height: 30%;
-    font-size: 1vw;
-    font-weight: 500;
+
+.color{
+    border-radius: 50%;
+    border: 0.2vw rgb(158, 158, 158) solid;
+    height: 2vw;
+    width: 2vw;
 }
-.desc p{
-    margin: 0;
-}
-.desc a{
-    width: 100%;
-    text-decoration: none;
-    display: inline-block;
-    padding: 2%;
-    font-weight: 600;
+
+.details{
     font-size: 1.2vw;
-    margin-top: 0.6vw;
-    color: black;
-    border: 0.05vw grey solid;
+    font-style: italic;
 }
-.desc a:hover{
+.details h2{
+    font-size: 2.2vw;
+    font-weight: 600;
+}
+.details input{
+    width: 10%;
+    height: 100%;
+}
+.details button{
     width: 100%;
-    background-color:white;
-    border: 0.2vw rgb(219, 219, 219) solid;
-    color: white;
+    padding: 1%;
     text-decoration: none;
-    padding: 2%;
-    font-weight: 700;
-    display: inline-block;
+    background-color: teal;
+    color: white;
+    transition: background-color linear 0.5s;
+    font-size: 1.2vw;
+    font-weight: 600;
+    margin-top: 15%;
+}
+.details button:hover{
+    color: teal;
+    background-color: white;
+    border: 0.2vw teal solid;
 }

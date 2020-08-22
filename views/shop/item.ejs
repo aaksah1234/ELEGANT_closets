@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Item</title>
+    <link href="/css/item.css" rel="stylesheet" type="text/css">
+    <link href="/css/about.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="/script/scroll.js"></script>
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-md navbar-dark fixed-top">
+        <a class="navbar-brand" href="/index.html" style="animation: yourAnimation 1s 1 1s linear;"><span style="font-weight: 700;">Some</span>Architects</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="collapsibleNavbar">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item" style="animation: yourAnimation 1s 1 1s linear;">
+              <a class="nav-link" href="/about.html">About Us</a>
+            </li>
+            <li class="nav-item" style="animation: yourAnimation 1s 1 1s linear;">
+              <a class="nav-link" href="/people.html">Accessories & Upholstery</a>
+            </li>
+            <li class="nav-item" style="animation: yourAnimation 1s 1 1s linear;">
+              <a class="nav-link" href="/project.html">Project Gallery</a>
+            </li>
+            <li class="nav-item" style="animation: yourAnimation 1s 1 1s linear;">
+              <a class="nav-link" href="/book.html">Book Online</a>
+            </li>
+            <!-- <li class="nav-item" style="animation: yourAnimation 1s 1 1s linear;">
+              <a class="nav-link" href="/contact" target="_blank">For Admin</a>
+            </li> -->
+            <li class="nav-item active" style="animation: yourAnimation 1s 1 1s linear;">
+              <a class="nav-link" href="/contact.html">Contact</a>
+            </li>     
+          </ul>
+        </div>  
+    </nav>
+
+    <div class="head">
+      <div>
+        <p id="comp">Your Choice is appreciable :)</p>
+      </div>  
+    </div>
+
+    <div class="cover">
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="image">
+                    <img src="<%= item.image %> " alt="item photo">
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="details">
+                    <h2><%= item.name %> .</h2>
+                    <hr>
+                    <p>Rs. <%= item.price %></p>
+                    <p>Color: <%= item.color %> </p>
+                    <div class="color" style="background-color:<%= item.color %>;"></div>
+                    <hr>
+                    <form action='/shop/buy' method="POST">
+                      <input type="number" name="item_id" hidden value=<%= item.id %> > 
+                      <label for="quan">Quantity : </label>
+                      <input type="number" min="1" name="quan" id="quan" value=1>
+                      <button type="submit" id="submit">BUY NOW</button>
+                    </form>
+                </div>
+            </div> 
+        </div>
+    </div>
+    <div class="feet">
+        <br><br>
+        <p style="text-align: center; color: white; ">
+            WILSON ARCHITECTS, 564 BOUNDARY ST, SPRING HILL, QLD, 4000, AUSTRALIA<br>CONTACT :07 3831 2755<br>WA@WILSONARCHITECTS.COM.AU
+        </p>
+        <div class="sma" style="margin-left: 45%;">
+            <div><img class="sg" src="/images/instagram-sketched.svg" alt=""><img src="/images/facebook.svg" alt="" style="height: 48px;"><img class="sg" src="/images/twitter.svg" alt=""><img class="sg" src="/images/linkedin.svg" alt=""></div>
+        </div>
+    </div>
+    
+    
+    <script>
+      var comp = document.getElementById('comp');
+      setTimeout(()=>{
+        comp.style.transform='translateY(-2.5vw)';
+      },500);
+    </script>
+
+</body>
+</html>

@@ -3,9 +3,23 @@
     padding: 0;
     box-sizing: border-box;
 }
+.head{
+  /* position: fixed; 
+  top: 0;
+  left: 0;
+  width: 100%; */
+  background-color: black;
+  color:white;
+  text-align:center;
+  padding:2%;
+  padding-top: 15%;
+  font-size:2.5vw;
+  background-attachment: fixed;
+}
 .condense{
     padding-left: 10%;
     padding-right: 10%;
+    /* margin-top: 25%; */
 }
 .meetings{
     margin: 5%;
@@ -14,15 +28,6 @@
     display: flex;
     justify-content: center;
     align-items: center;
-}
-.head{
-    
-    background-color: black;
-    color:white;
-    text-align:center;
-    padding:2%;
-    padding-top: 15%;
-    font-size:2.5vw;
 }
 .loc{
     border: 0.05vw rgb(128, 128, 128) solid;
@@ -53,6 +58,7 @@
     padding: 10%;
     font-size: 1vw;
     height: 50%;
+    background-color: white;
 }
 .desc p:first-child{
     font-size: 1.4vw;
