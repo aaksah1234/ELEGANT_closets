@@ -3,10 +3,10 @@ const app=express();
 const bodyParser=require('body-parser');
 const errorhandler=require('errorhandler');
 const sqlite3=require('sqlite3');
+const morgan = require('morgan');
 const session=require('express-session');
 const passport=require('passport');
 const flash=require('connect-flash');
-
 
 const db=new sqlite3.Database(process.env.TEST_DATABASE||'./database.sqlite');
 
@@ -37,6 +37,8 @@ app.set('views',__dirname+'/views');
 app.use(express.static('public'));
 
 app.use(bodyParser.urlencoded({extended:true}));
+
+//app.use(morgan('dev'));
 
 app.use('/user',userRouter);
 app.use('/contact',contactRouter);

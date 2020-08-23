@@ -43,9 +43,10 @@
         </div>  
       </nav>
       <div class="head">
-        <p>SERVICES</p>
-    </div>
-
+        <div>
+          <p id="comp">SERVICES</p>
+        </div>  
+      </div>
 
 
     <div class="condense">
@@ -104,6 +105,12 @@
         </div>
     </div>
     
+    <script>
+        var comp = document.getElementById('comp');
+        setTimeout(()=>{
+          comp.style.transform='translateY(-2.5vw)';
+        },500);
+      </script>
     
 </body>
 </html>

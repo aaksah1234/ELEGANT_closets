@@ -4,8 +4,53 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bill</title>
+
+    <link href="/css/bill.css" rel="stylesheet" type="text/css">
+    <link href="/css/about.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.0.0/animate.min.css">
+
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="/script/scroll.js"></script>
 </head>
 <body>
+    <div class="contain">
+        <div class="cover">
+           
+                <div class="bill">
+                    <p class="p1">Your choices sum up to ...</p>
+                    <table>
+                        <tr>
+                            <td colspan="2">Product</td>
+                            <td>Color</td>
+                            <td>Price</td>
+                            <td>Quantity</td>
+                            <td>Total Cost</td>
+                        </tr>
+                        <% items.forEach((element)=>{ %>
+                            <tr>
+                                <td colspan="2"><%= element.item.name %> </td>
+                                <td><%= element.item.color %></td>
+                                <td><%= element.item.price %></td>
+                                <td><%= element.quan %></td>
+                                <% var x=(element.quan*element.item.price) %> 
+                                <td><%= x %></td>
+                            </tr>
+                        <% }) %> 
+                    </table>
+                    <div class="foot">
+                        <p class="p2">You are liable to pay <span> &#x20B9; <%= tot %> </span></p>
+                        <a href="/shop" class="explore">Explore more</a>
+                        <p class="p3">Hope to see you again, XOXO :)</p>
+                        <p class="p4">- Elegant_Closets</p>
+                    </div>
+                    
+                </div>
+            </div>
+        
+    </div>
     
 </body>
 </html>
