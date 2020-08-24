@@ -66,14 +66,16 @@
     font-weight: 600;
     font-size: 1.2vw;
     margin-top: 0.6vw;
+    background-color:rgb(39, 202, 202);
     color: black;
     border: 0.05vw grey solid;
+    transition: background-color linear 0.5s;
 }
 .desc a:hover{
     width: 100%;
-    background-color:white;
-    border: 0.2vw rgb(219, 219, 219) solid;
-    color: white;
+    background-color:rgb(146, 235, 235);
+    border: 0.1vw rgb(39, 202, 202) solid;
+    color: black;
     text-decoration: none;
     padding: 2%;
     font-weight: 700;

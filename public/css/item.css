@@ -58,11 +58,12 @@
     font-size: 2.2vw;
     font-weight: 600;
 }
-.details input{
+.details form input{
     width: 10%;
     height: 100%;
+    margin-bottom: 10%;
 }
-.details button{
+.details form button{
     width: 100%;
     padding: 1%;
     text-decoration: none;
@@ -71,7 +72,7 @@
     transition: background-color linear 0.5s;
     font-size: 1.2vw;
     font-weight: 600;
-    margin-top: 15%;
+    margin: 2%;
 }
 .details button:hover{
     color: teal;

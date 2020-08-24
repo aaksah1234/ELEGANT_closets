@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Item</title>
-    <link href="/css/item.css" rel="stylesheet" type="text/css">
+    <title>Cart</title>
+    <link href="/css/cart.css" rel="stylesheet" type="text/css">
     <link href="/css/about.css" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     
@@ -44,39 +44,36 @@
         </div>  
     </nav>
 
-    <div class="head">
-      <div>
-        <p id="comp">Your Choice is appreciable :)</p>
-      </div>  
-    </div>
 
-    <div class="cover">
-        <div class="row">
-            <div class="col-sm-6">
-                <div class="image">
-                    <img src="<%= item.image %> " alt="item photo">
-                </div>
-            </div>
-            <div class="col-sm-6">
-                <div class="details">
-                    <h2><%= item.name %> .</h2>
-                    <hr>
-                    <p>Rs. <%= item.price %></p>
-                    <p>Color: <%= item.color %> </p>
-                    <div class="color" style="background-color:<%= item.color %>;"></div>
-                    <hr>
-                    <form method="POST" id="form">
-                      <input type="number" name="item_id" hidden value=<%= item.id %> > 
-                      <label for="quan">Quantity : </label>
-                      <input type="number" min="1" name="quan" id="quan" value=1>
-                      <button type="submit" id="submit1">ADD TO CART</button>
-                      <button type="submit" id="submit2">BUY NOW</button>
-                    </form>
-                </div>
-            </div> 
-        </div>
-    </div>
-    <div class="feet">
+    <div class="head">
+        <div>
+          <p id="comp">Hello, <%= name %> :)</p>
+        </div>  
+      </div>
+  
+      <div class="cover">
+        <table>
+            <tr>
+                <td colspan="2">Product</td>
+                <td>Color</td>
+                <td>Price</td>
+                <td>Quantity</td>
+                <td>Total Cost</td>
+            </tr>
+            <% items.forEach((ele)=>{ %>
+                <tr>
+                    <td colspan="2"><%= ele.item.name %> </td>
+                    <td><%= ele.item.color %></td>
+                    <td><%= ele.item.price %></td>
+                    <td><%= ele.quan %></td>
+                    <% var x=((ele.quan)*(ele.item.price)) %> 
+                    <td><%= x %></td>
+                </tr>
+            <% }) %> 
+        </table>
+      </div>
+
+      <div class="feet">
         <br><br>
         <p style="text-align: center; color: white; ">
             WILSON ARCHITECTS, 564 BOUNDARY ST, SPRING HILL, QLD, 4000, AUSTRALIA<br>CONTACT :07 3831 2755<br>WA@WILSONARCHITECTS.COM.AU
@@ -85,25 +82,13 @@
             <div><img class="sg" src="/images/instagram-sketched.svg" alt=""><img src="/images/facebook.svg" alt="" style="height: 48px;"><img class="sg" src="/images/twitter.svg" alt=""><img class="sg" src="/images/linkedin.svg" alt=""></div>
         </div>
     </div>
-    
-    
+
     <script>
-      var comp = document.getElementById('comp');
-      setTimeout(()=>{
-        comp.style.transform='translateY(-2.5vw)';
-      },500);
-
-      var sub1=document.getElementById('submit1');
-      var sub2=document.getElementById('submit2');
-      var form =document.getElementById('form');
-      sub1.addEventListener('click',function(event){
-          form.action='/shop/cart';
-      });
-      sub2.addEventListener('click',function(event){
-        form.action='/shop/buy';
-    });
-
-    </script>
-
+        var comp = document.getElementById('comp');
+        setTimeout(()=>{
+          comp.style.transform='translateY(-2.5vw)';
+        },500);
+      </script>
+    
 </body>
 </html>

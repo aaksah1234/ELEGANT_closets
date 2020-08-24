@@ -1,0 +1,57 @@
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+.head{
+    background-image:url('/images/u1.jpg');
+    color:white;
+    font-size:2.5vw;
+    background-attachment: fixed;
+    background-position: bottom;
+    height: 25vw;
+    background-size: cover;
+}
+.head div{
+    background-color: rgba(0, 0, 0,0.5);
+    text-align:center;
+    padding-top: 15%;
+    width: 100%;
+    height: 100%;
+}
+.head div p{
+    transition: transform ease-in-out 1s;
+}
+
+.cover{
+    padding-left: 10%;
+    padding-right: 10%;
+    margin-top: 5%;
+    margin-bottom: 5%;
+}
+
+table{
+    margin: auto;
+    padding: 1.5%;
+    width: 100%;
+}
+
+table tr:first-child{
+    font-size: 1.5vw;
+    font-weight: 600;
+    border-bottom: black 0.1vw solid;
+}
+table tr{
+    font-size: 1vw;
+}
+td{
+    padding: 1%;
+}
+td img{
+    width: 100%;
+    height: 100%;
+}
+tr:nth-child(even){
+    background-color: rgba(0, 128, 128,0.8);
+    color: white;
+}
