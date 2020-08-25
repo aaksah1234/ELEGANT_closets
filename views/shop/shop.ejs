@@ -7,16 +7,23 @@
     <link rel="stylesheet" href="/css/about.css">
     <link href="/css/shop.css" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="/script/scroll.js"></script>
+
+    <link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui-touch-punch/0.2.3/jquery.ui.touch-punch.min.js"></script>
+
 </head>
 <body>
 
     <nav class="navbar navbar-expand-md navbar-dark fixed-top">
-        <a class="navbar-brand" href="/index.html" style="animation: yourAnimation 1s 1 1s linear;"><span style="font-weight: 700;">Some</span>Architects</a>
+        <a class="navbar-brand" href="/index.html" style="animation: yourAnimation 1s 1 1s linear;"><span style="font-weight: 700;">ELEGANT</span>_closets</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -25,7 +32,7 @@
             <li class="nav-item" style="animation: yourAnimation 1s 1 1s linear;">
               <a class="nav-link" href="/about.html">About Us</a>
             </li>
-            <li class="nav-item" style="animation: yourAnimation 1s 1 1s linear;">
+            <li class="nav-item active" style="animation: yourAnimation 1s 1 1s linear;">
               <a class="nav-link" href="/shop">Accessories & Upholstery</a>
             </li>
             <li class="nav-item" style="animation: yourAnimation 1s 1 1s linear;">
@@ -34,12 +41,13 @@
             <li class="nav-item" style="animation: yourAnimation 1s 1 1s linear;">
               <a class="nav-link" href="/book.html">Book Online</a>
             </li>
-            <!-- <li class="nav-item" style="animation: yourAnimation 1s 1 1s linear;">
-              <a class="nav-link" href="/contact" target="_blank">For Admin</a>
-            </li> -->
-            <li class="nav-item active" style="animation: yourAnimation 1s 1 1s linear;">
+            <li class="nav-item" style="animation: yourAnimation 1s 1 1s linear;">
               <a class="nav-link" href="/contact.html">Contact</a>
-            </li>     
+            </li>  
+            <li class="nav-item" style="animation: yourAnimation 1s 1 1s linear;">
+              <a class="nav-link" href="/user/login" target="_blank"><i class="fa fa-user-circle-o"></i></a>
+            </li>
+               
           </ul>
         </div>  
     </nav>
@@ -52,13 +60,26 @@
 
     <div class="cover">
         <div class="row">
-            <div class="col-sm-2">
-                <h3>Filter</h3>
-                <hr>
-                <p>Price</p>
-                <hr>
+            <div class="col-sm-12">
+              <div class="row">
+                <div class="col-sm-9">
+                  <p style="font-size:1.8vw; font-weight:700; margin:0%">Filter by :</p>
+                  <hr style="margin-top: 0%;">
+                    <p>
+                      <label for="amount">Price range:</label>
+                      <input type="text" id="amount" readonly style="border:0; color:#008080; font-weight:bold;">
+                    </p>
+                    <div id="slider-range"></div>             
+                  <hr>
+                </div>
+                <div class="col-sm-3" class="count">
+                    <a href="shop/cart" class="cart"><i class="fa fa-shopping-cart"></i><div class="number">0</div></a>
+                    
+                </div>
+              </div>
+              
             </div>
-            <div class="col-sm-10">
+            <div class="col-sm-12">
                 <div class="row">
                     <% items.forEach(item=>{ %>
                         <div class="col-sl-12 col-sm-6">
@@ -94,6 +115,22 @@
         comp.style.transform='translateY(-2.5vw)';
       },500);
     </script>
+
+    <script>
+      $( function() {
+        $( "#slider-range" ).slider({
+          range: true,
+          min: 1000,
+          max: 50000,
+          values: [ 1000, 50000 ],
+          slide: function( event, ui ) {
+            $( "#amount" ).val( "$" + ui.values[ 0 ] + " - $" + ui.values[ 1 ] );
+          }
+        });
+        $( "#amount" ).val( "$" + $( "#slider-range" ).slider( "values", 0 ) +
+          " - $" + $( "#slider-range" ).slider( "values", 1 ) );
+      } );
+  </script>
 
 </body>
 </html>

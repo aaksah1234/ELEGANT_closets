@@ -24,9 +24,26 @@
     transition: transform ease-in-out 1s;
 }
 
+.cart{
+    font-size: 4vw;
+    position: relative;
+    color: rgb(3, 161, 161);
+}
+.cart:hover{
+    color: rgb(59, 165, 165);
+}
+.number{
+    font-size: 1.5vw;
+    display: inline-block;
+    color: white;
+    position: absolute;
+    top: 1.5vw;
+    left: 2vw;
+}
+
 .cover{
-    padding-left: 10%;
-    padding-right: 10%;
+    padding-left: 15%;
+    padding-right: 15%;
     margin-top: 5%;
     margin-bottom: 5%;
 }

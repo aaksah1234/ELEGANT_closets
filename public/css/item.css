@@ -29,18 +29,25 @@
     margin-top: 5%;
     margin-bottom: 5%;
 }
-.image{
+.img-magnifier-container{
     border: 0.1vw grey solid;
     height: 30vw;
-    overflow: hidden;
-}
-.image img{
     width: 100%;
-    height: 100%;
-    transition: transform linear 0.5s;
+    position: relative;
 }
-.image img:hover{
-    transform: scale(1.2,1.2);
+#myimage{
+    width: 100%;
+    height: 100%
+}
+
+.img-magnifier-glass {
+    position: absolute;
+    border: 0.2vw solid #000;
+    border-radius: 50%;
+    cursor: none;
+    /*Set the size of the magnifier glass:*/
+    width: 6vw;
+    height: 6vw;
 }
 
 .color{

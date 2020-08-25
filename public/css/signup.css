@@ -1,0 +1,131 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.cover{
+    width: 100%;
+    height: 48vw;
+    background-color: aliceblue;
+    position: relative;
+}
+.tile{
+    width: 10vw;
+    height: 8vw;
+    background-color: rgba(255, 255, 255);
+    z-index: 20;
+    position: absolute;
+    right: 43vw;
+    top: 10vw;
+}
+.login{
+    width: 50%;
+    height: 70%;
+    position: absolute;
+    background-color: white;
+    top: 10vw;
+    left: 0;
+    right: 18vw;
+    bottom: 0;
+    z-index: 8;
+    display: flex;
+    border: 0.1vw teal solid;
+    justify-content: center;
+    align-items: center;
+}
+
+.submit{
+    background-color: rgb(253, 168, 82);
+    font-size: 1.2vw;
+    margin-top: 3%;
+    width: 100%;
+}
+
+.submit:hover{
+    background-color: rgb(255, 197, 139);
+    font-size: 1.2vw;
+    margin-top: 3%;
+    width: 100%;
+}
+
+form{
+    font-size: 1vw;
+}
+
+form input{
+    height: 1vw;
+}
+
+.login div h1{
+    font-size: 2.5vw;
+
+}
+.login div{
+    font-size: 1vw;
+    
+}
+.decor1{
+    height: 50%;
+    width: 50%;
+    background:linear-gradient(-45deg,rgb(1, 63, 63),rgb(2, 158, 158));
+    position: absolute;
+    top:0;
+    left: 0;
+
+}
+.decor2{
+    height: 50%;
+    width: 50%;
+    background:linear-gradient(45deg,rgb(253, 168, 82),rgb(250, 213, 176));
+    position: absolute;
+    top:0;
+    right: 0;
+}
+
+.image1{
+    position: absolute;
+    top:3vw;
+    right: 23vw;
+   
+    z-index: 18;
+    width: 15vw;
+    height: 15vw;
+    background-image: url('/images/u.jpg');
+    background-size: cover;
+}
+
+.image2{
+    position: absolute;
+    top:18vw;
+    right: 22vw;
+    border: 0.1vw rgb(253, 168, 82) solid;
+    z-index: 10;
+    width: 15vw;
+    height: 15vw;
+    background-image: url('/images/t.jpg');
+    background-size: cover;
+    background-position:bottom ;
+}
+
+.image3{
+    position: absolute;
+    top:3vw;
+    right: 38vw;
+    z-index: 18;
+    width: 15vw;
+    height: 15vw;
+    background-image: url('/images/5.jpg');
+    background-size: cover;
+}
+
+.image4{
+    position: absolute;
+    top:30vw;
+    right: 25vw;
+    z-index: 10;
+    width: 15vw;
+    border: 0.1vw rgb(253, 168, 82) solid;
+    height: 15vw;
+    background-image: url('/images/w.jpg');
+    background-size: cover;
+}
