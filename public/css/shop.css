@@ -27,10 +27,10 @@
 .cart{
     font-size: 4vw;
     position: relative;
-    color: rgb(3, 161, 161);
+    color: rgb(253, 168, 82);
 }
 .cart:hover{
-    color: rgb(59, 165, 165);
+    color: rgb(255, 197, 139);
 }
 .number{
     font-size: 1.5vw;

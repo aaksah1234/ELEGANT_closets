@@ -46,6 +46,10 @@ table tr{
 }
 td{
     padding: 1%;
+    height: 12vw;
+}
+td:first-child{
+    width: 12vw;
 }
 td img{
     width: 100%;
@@ -54,4 +58,50 @@ td img{
 tr:nth-child(even){
     background-color: rgba(0, 128, 128,0.8);
     color: white;
+}
+.buy_cart{
+    width: 50%;
+    padding:1%;
+    background-color:rgb(2, 158, 158);
+    border: 0.1vw rgb(1, 63, 63) solid;
+}
+
+.del,.del:hover{
+    color: red;
+    padding: 1%;
+    font-size: 2vw;
+}
+
+.quote{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.quote div{
+    width: 80%;
+    font-style: italic;
+    color: rgb(253, 168, 82);
+    font-weight: 600;
+    font-size: 1.2vw;
+    height: 80%;
+}
+.summary p:first-child{
+    color: grey;
+    font-size: 1.4vw;
+}
+.summary button{
+    padding: 1%;
+    background-color: rgba(0, 128, 128,0.8);
+    border: 0.15vw teal solid;
+    transition: background-color linear 0.5s;
+    font-size: 1.2vw;
+    font-weight: 600;
+    width: 80%;
+}
+.summary button:hover{
+    background-color: rgba(144, 247, 247, 0.8);
+    border: 0.15vw teal solid;
+    font-size: 1.2vw;
+    font-weight: 600;
+    width: 80%;
 }

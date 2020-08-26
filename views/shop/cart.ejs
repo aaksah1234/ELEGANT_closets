@@ -50,11 +50,30 @@
         <div>
           <p id="comp">Hello, <%= name %> :)</p>
         </div>  
-      </div>
+    </div>
   
       <div class="cover">
+        <div class="row">
+          <div class="col-sm-6 quote">
+            <div>
+              "The essence of interior design will always be about people and how they live. It is about the realities of what makes for an attractive, civilized, meaningful environment, not about fashion or what's in or what's out.”
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div class="summary">
+              <p>Order Summary</p>
+              <hr>
+              <p>Subtotal : &#x20B9; <%= tot %></p>
+              <form action="/shop/cart/buy" method="POST">
+                <button>Buy Cart</button>
+              </form>
+            </div>
+          </div>
+        </div>
+        <% var tot=0 %> 
         <table>
             <tr>
+                <td></td>
                 <td colspan="2">Product</td>
                 <td>Color</td>
                 <td>Price</td>
@@ -63,12 +82,15 @@
             </tr>
             <% items.forEach((ele)=>{ %>
                 <tr>
+                    <td><img src="<%= ele.item.image %>" alt="item photo" width="3vw" height="3vw"></td>
                     <td colspan="2"><%= ele.item.name %> </td>
                     <td><%= ele.item.color %></td>
-                    <td><%= ele.item.price %></td>
+                    <td>&#x20B9; <%= ele.item.price %></td>
                     <td><%= ele.quan %></td>
                     <% var x=((ele.quan)*(ele.item.price)) %> 
+                    <% tot=tot+x %> 
                     <td><%= x %></td>
+                    <td><a href="#" class="del"><i class="fa fa-trash" aria-hidden="true"></i></a></td>
                 </tr>
             <% }) %> 
         </table>

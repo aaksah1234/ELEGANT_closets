@@ -3,6 +3,7 @@ const shopRouter=express.Router();
 const conn=require('../config/connection');
 let authenticate=require('../authenticate');
 
+
 module.exports=shopRouter;
 
 
@@ -13,7 +14,20 @@ shopRouter.get('/',(req,res,next)=>{
             next(err);
         }
         else{
-            res.render('shop/shop',{items:items});
+            if(req.user){
+                conn.query('SELECT COUNT(*) AS count FROM cart WHERE user_id=?',[req.user.id],function(err,result){
+                    if(err){
+                        next(err);
+                    }
+                    else{
+                        res.render('shop/shop',{items:items,count:result[0].count});
+                    }
+                });
+            }
+            else{
+                res.render('shop/shop',{items:items,count:0});
+            }
+           
         }
     });
 });
@@ -61,19 +75,25 @@ shopRouter.post('/buy',authenticate,(req,res,next)=>{
 //see cart
 shopRouter.get('/cart',authenticate,async(req,res,next)=>{
     var products=[];
-    try{
-        let result= await conn.query('SELECT * FROM cart WHERE user_id=?',[req.user.id]);
-        result.forEach(async(element)=>{
-            let result1 =await conn.query('SELECT * FROM item WHERE id=?',[element.item_id]);
-            products.push({item:result1[0],quan:element.quantity});          
-        });
-        res.render('shop/cart',{items:products,name:req.user.name.split(' ')[0].toUpperCase()});       
-    }
-    catch(err){
-        throw err;
-    }
+       conn.query('SELECT * FROM cart WHERE user_id=?',[req.user.id],function(err,result){
+           if(err){
+               next(err);
+           }
+           result.forEach((element)=>{
+               conn.query('SELECT * FROM item WHERE id=?',[element.item_id],function(err1,result1){
+                   if(err1){
+                       next(err1);
+                   }
+                   products.push({item:result1[0],quan:element.quantity});
+               });
+           });
+       });
+
+       setTimeout(()=>{
+        res.render('shop/cart',{items:products,name:req.user.name.split(' ')[0].toUpperCase()}); 
+       },1000);
 });
-        
+      
 
 //add to cart
 shopRouter.post('/cart',authenticate,(req,res,next)=>{
@@ -86,17 +106,47 @@ shopRouter.post('/cart',authenticate,(req,res,next)=>{
             res.status(403).send('available quantity is less than demanded !!!');
         }
         else{
-                conn.query('INSERT INTO cart (user_id,item_id,quantity) VALUES (?,?,?)',[req.user.id,req.body.item_id,req.body.quan],(err,result1)=>{
-                    if(err){
-                        next(err);
+                conn.query('SELECT * FROM cart WHERE item_id=?',[req.body.item_id],function(err2,result2){
+                    if(err2){
+                        next(err2);
                     }
                     else{
-                        conn.query('SELECT * FROM cart WHERE id=?',[result1.insertId],(err,row)=>{
-                            if(err)next(err);
-                            res.status(201).send({cartItem:row});
-                        });
+                        if(result2.length==0){
+                            conn.query('INSERT INTO cart (user_id,item_id,quantity) VALUES (?,?,?)',[req.user.id,req.body.item_id,req.body.quan],(err,result1)=>{
+                                if(err){
+                                    next(err);
+                                }
+                                else{
+                                    conn.query('SELECT * FROM cart WHERE id=?',[result1.insertId],(err,row)=>{
+                                        if(err)next(err);
+                                        res.status(201).send({cartItem:row});
+                                    });
+                                }
+                            }); 
+                        }
+                        else{
+                            conn.query('SELECT quantity FROM cart WHERE item_id=?',[req.body.item_id],function(err3,result3){
+                                if(err3){
+                                    next(err3);
+                                }
+                                else{
+                                    conn.query('UPDATE cart SET quantity=? WHERE item_id=?',[(result3[0].quantity+parseInt(req.body.quan)),req.body.item_id],function(err4,result4){
+                                        if(err4){
+                                            next(err4);
+                                        }
+                                        else{
+                                            conn.query('SELECT * FROM cart WHERE item_id=?',[req.body.item_id],(err5,row)=>{
+                                                if(err5)next(err5);
+                                                res.status(200).send({cartItem:row});
+                                            });
+                                        }
+                                    });
+                                }
+                            });
+                        }
                     }
-                }); 
+                });
+                
         }
     });
 });
@@ -122,7 +172,7 @@ shopRouter.post('/cart/buy',authenticate,(req,res,next)=>{
         if(err){
             next(err);
         }
-        else if(!result.length()){
+        else if(!result.length){
             res.status(404).send('nothing in cart !!!');
         }
         else{
@@ -133,9 +183,9 @@ shopRouter.post('/cart/buy',authenticate,(req,res,next)=>{
                         next(err);
                     }
                     else{
-                        sum+=((result1.price)*(element.quantity));
-                        products.push({item:result1,quan:element.quantity});
-                        conn.query('UPDATE item SET avail_quantity = ?',[pres_quan-element.quantity],function(err,result2){
+                        sum+=((result1[0].price)*(element.quantity));
+                        products.push({item:result1[0],quan:element.quantity});
+                        conn.query('UPDATE item SET avail_quantity = ? WHERE id=?',[(result1[0].avail_quantity-element.quantity),element.item_id],function(err,result2){
                             if(err){
                                     next(err);
                             }
@@ -144,10 +194,18 @@ shopRouter.post('/cart/buy',authenticate,(req,res,next)=>{
                     }
                 });        
             });
-            //res.render('shop/bill',{items:products,tot:sum});
+
+            conn.query('DELETE FROM cart',function(err,result){
+                if(err){
+                    next(err);
+                }
+               // console.log("cart emptied !!!");
+            });
+            
             setTimeout(()=>{
-                res.status(200).send('cart items summed up & each item\'s available quantity is updated!!!');
-            },0);
+                // res.status(200).send('cart items summed up & each item\'s available quantity is updated!!!');
+                res.render('shop/bill',{items:products,tot:sum});
+            },1000);
             
         }
     });
