@@ -76,7 +76,7 @@ shopRouter.post('/buy',authenticate,(req,res,next)=>{
 
 //see cart
 shopRouter.get('/cart',authenticate,async(req,res,next)=>{
-    var products=[];
+    var products=[],tot=0;
        conn.query('SELECT * FROM cart WHERE user_id=?',[req.user.id],function(err,result){
            if(err){
                next(err);
@@ -86,13 +86,14 @@ shopRouter.get('/cart',authenticate,async(req,res,next)=>{
                    if(err1){
                        next(err1);
                    }
+                   tot=tot+((result1[0].price)*(element.quantity));
                    products.push({item:result1[0],quan:element.quantity});
                });
            });
        });
 
        setTimeout(()=>{
-        res.render('shop/cart',{items:products,name:req.user.name.split(' ')[0].toUpperCase(),message:req.flash('message')}); 
+        res.render('shop/cart',{items:products,name:req.user.name.split(' ')[0].toUpperCase(),message:req.flash('message'),tot:tot}); 
        },1000);
 });
       
