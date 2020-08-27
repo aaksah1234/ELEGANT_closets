@@ -6,10 +6,8 @@ const db=new sqlite3.Database(process.env.TEST_DATABASE||'./database.sqlite');
 module.exports=contactRouter;
 
 
-contactRouter.get('/',(req,res,next)=>{
-    db.all('SELECT * FROM Messages',(err,rows)=>{
-        res.render('contact/all_mails',{contacts:rows});
-    });
+contactRouter.get('/contact',(req,res,next)=>{
+    res.render('contact/contact',{message:req.flash('message')});
 });
 
 contactRouter.post('/',(req,res,next)=>{
@@ -28,8 +26,12 @@ contactRouter.post('/',(req,res,next)=>{
             if(err){
                 next(err);
             }
-            db.get('SELECT * FROM Messages WHERE id=$id',{$id:this.lastID},(err,row)=>{
-                res.render('contact/success',{msg:'Your message is successfully sent ! '});
+            db.get('SELECT * FROM Messages WHERE id=$id',{$id:this.lastID},(err1,row)=>{
+                if(err1){
+                    next(err1);
+                }
+                req.flash('message','Your message is successfully sent !!!');
+                res.render('contact/contact',{message:req.flash('message')});
                 //res.status(201).json({contact:row});
             });
         });

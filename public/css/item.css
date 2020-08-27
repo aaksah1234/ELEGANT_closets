@@ -86,3 +86,18 @@
     background-color: white;
     border: 0.2vw teal solid;
 }
+.message{
+    padding: 1%;
+    border: 0.1vw rgb(253, 168, 82) solid;
+    background-color: rgb(252, 222, 192);
+    width: 60%;
+    margin: 2% auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.message p{
+    font-size: 1.2vw;
+    margin: 0;
+    font-weight: 600;
+}
