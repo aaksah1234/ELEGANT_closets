@@ -48,12 +48,15 @@ shopRouter.get('/buy/:item_id',(req,res,next)=>{
 
 //buy individual item
 shopRouter.post('/buy',authenticate,(req,res,next)=>{
+
     conn.query('SELECT * FROM item WHERE id=?',[req.body.item_id],(err,result)=>{
         if(err){
             next(err);
         }
         else if(result[0].avail_quantity<req.body.quan){
             res.status(403).send('available quantity is less than demanded !!!');
+            windows.alert('available quantity is less than demanded !!!');
+            res.redirect('/shop/buy/'+req.body.item_id);
         }
         else{
             conn.query('UPDATE item SET avail_quantity = ? WHERE id=?',[(result[0].avail_quantity-req.body.quan),req.body.item_id],(err,result1)=>{
@@ -153,13 +156,13 @@ shopRouter.post('/cart',authenticate,(req,res,next)=>{
 
 
 //delete from cart
-shopRouter.delete('/cart/:item_id',authenticate,(req,res,next)=>{
+shopRouter.get('/cart/:item_id',authenticate,(req,res,next)=>{
     conn.query('DELETE FROM cart WHERE user_id = ? AND item_id = ?',[req.user.id,req.params.item_id],function(err,result){
         if(err){
             next(err);
         }
         else{
-            res.status(204).send('deleted item from cart !!!');
+            res.status(200).send('deleted item from cart !!!');
         }
     });
 });

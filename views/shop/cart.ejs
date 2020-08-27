@@ -90,7 +90,7 @@
                     <% var x=((ele.quan)*(ele.item.price)) %> 
                     <% tot=tot+x %> 
                     <td><%= x %></td>
-                    <td><a href="#" class="del"><i class="fa fa-trash" aria-hidden="true"></i></a></td>
+                    <td><a href="/shop/cart/<%= ele.item.id %>" class="del"><i class="fa fa-trash" aria-hidden="true"></i></a></td>
                 </tr>
             <% }) %> 
         </table>

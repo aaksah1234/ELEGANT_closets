@@ -70,6 +70,8 @@ tr:nth-child(even){
     color: red;
     padding: 1%;
     font-size: 2vw;
+    width: 100%;
+    display: block;
 }
 
 .quote{
