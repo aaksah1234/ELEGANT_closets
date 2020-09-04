@@ -41,7 +41,7 @@ app.use(express.static('public'));
 
 app.use(bodyParser.urlencoded({extended:true}));
 
-//app.use(morgan('dev'));
+app.use(morgan('dev'));
 
 app.use('/user',userRouter);
 app.use('/contact',contactRouter);
