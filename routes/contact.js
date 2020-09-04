@@ -7,7 +7,7 @@ module.exports=contactRouter;
 
 
 contactRouter.get('/contact',(req,res,next)=>{
-    res.render('contact/contact',{message:req.flash('message')});
+    res.render('contact/contact');
 });
 
 contactRouter.post('/',(req,res,next)=>{
