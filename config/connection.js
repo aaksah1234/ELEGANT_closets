@@ -1,9 +1,9 @@
 const mysql=require('mysql');
 var conn=mysql.createConnection({
-    host:"localhost",
-    user:"root",
-    password:"password",
-    database:"interior_design"
+    host:process.env.HOST,
+    user:process.env.USER,
+    password:process.env.PASS,
+    database:process.env.DATABASE
 });
 
 conn.connect((err)=>{

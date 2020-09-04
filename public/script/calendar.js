@@ -1,5 +1,5 @@
 $(function() {
-  loadEvents();
+  // loadEvents();
   showTodaysDate();
   initializeCalendar();
   getCalendars();
@@ -76,10 +76,10 @@ var cal2GoTo = function(date) {
 }
 
 
-var loadEvents = function() {
-  $.getScript("/script/events.js", function(){
-  });
-}
+// var loadEvents = function() {
+//   $.getScript("/script/events.js", function(){
+//   });
+// }
 
 var newEvent = function(start) {
   $('select#title').val("");
