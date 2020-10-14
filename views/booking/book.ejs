@@ -1,9 +1,11 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-    <meta charset='utf-8'/>
+    <meta charset='utf-8' />
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
+    <script src='/script/events.js'></script>
     <link href='/css/vendor/bootstrap.min.css' rel='stylesheet' />
     <link href='/css/vendor/fullcalendar.css' rel='stylesheet' />
     <link href='/css/style.css' rel='stylesheet' />
@@ -12,7 +14,9 @@
     <script src='/script/vendor/moment.min.js'></script>
     <script src='/script/vendor/bootstrap.min.js'></script>
     <script src='/script/vendor/fullcalendar.js'></script>
-    <!-- <script src='/script/events.js'></script> -->
+
+    
+
     <script src='/script/calendar.js'></script>
 
     <!--[if lt IE 8]>
@@ -39,7 +43,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                      <span aria-hidden="true">&times;</span>
+                        <span aria-hidden="true">&times;</span>
                     </button>
                     <h4 class="modal-title" id="newEvent">New Apppointment</h4>
                 </div>
@@ -50,19 +54,19 @@
                             <select class="form-control" id="title">
 
                                 <% if(category==='Residential'){ %>
-                                    <option value="Residential" selected>Residential</option>
-                                    <option value="Workspace" disabled>Workspace</option>
-                                    <option value="Interior" disabled>Interior</option>
+                                <option value="Residential" selected>Residential</option>
+                                <option value="Workspace" disabled>Workspace</option>
+                                <option value="Interior" disabled>Interior</option>
                                 <% }else if(category==='Workspace'){ %>
-                                    <option value="Residential" disabled>Residential</option>
-                                    <option value="Workspace" selected>Workspace</option>
-                                    <option value="Interior" disabled>Interior</option>
+                                <option value="Residential" disabled>Residential</option>
+                                <option value="Workspace" selected>Workspace</option>
+                                <option value="Interior" disabled>Interior</option>
                                 <% }else{ %>
-                                    <option value="Residential" disabled>Residential</option>
-                                    <option value="Workspace" disabled>Workspace</option>
-                                    <option value="Interior" selected>Interior</option>
-                                <% } %>   
-                                
+                                <option value="Residential" disabled>Residential</option>
+                                <option value="Workspace" disabled>Workspace</option>
+                                <option value="Interior" selected>Interior</option>
+                                <% } %>
+
                             </select>
                         </div>
                     </div>
@@ -75,13 +79,14 @@
         </div>
     </div>
 
-    <div class="modal fade" id="editEvent" role="dialog" aria-labelledby="eventFormLabel" aria-hidden="true" data-persist="false">
+    <div class="modal fade" id="editEvent" role="dialog" aria-labelledby="eventFormLabel" aria-hidden="true"
+        data-persist="false">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
+                        <span aria-hidden="true">&times;</span>
+                    </button>
                     <h4 class="modal-title" id="editEvent">Update Apppointment</h4>
                 </div>
                 <form>

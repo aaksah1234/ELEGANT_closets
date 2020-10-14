@@ -1,12 +1,21 @@
-$(function() {
-  // loadEvents();
-  showTodaysDate();
-  initializeCalendar();
-  getCalendars();
-  initializeRightCalendar();
-  initializeLeftCalendar();
-  disableEnter();
-});
+var events;
+
+fetch('/book/residential/getEvents')
+.then((resp) => resp.json()) // Transform the data into json
+.then(function (data) {
+  events = function () {
+    return data;
+  }
+            $(function() {
+              //loadEvents();
+              showTodaysDate();
+              initializeCalendar();
+              getCalendars();
+              initializeRightCalendar();
+              initializeLeftCalendar();
+              disableEnter();
+            });
+  });
 
 /* --------------------------initialize calendar-------------------------- */
 var initializeCalendar = function() {
