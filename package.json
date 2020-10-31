@@ -7,7 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node app.js"
   },
-  "author": "",
+  "author": "Aakriti Sahrawat",
   "license": "ISC",
   "dependencies": {
     "bcrypt": "^5.0.0",
