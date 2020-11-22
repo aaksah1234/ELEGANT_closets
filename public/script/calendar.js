@@ -101,27 +101,36 @@ var newEvent = function(start) {
         title: title,
         start: start
     };
-    
-    fetch('/book/newMeet',{
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-        // 'Content-Type': 'application/x-www-form-urlencoded',
-      },
-      body: JSON.stringify({datetime : start , category : title})
-    })
-    .then((response)=>{
-      if(response.ok){
-          $cal.fullCalendar('renderEvent', eventData, true);
-          $('#newEvent').modal('hide');
-      }
-      // else{
-      //   throw new Error("Request Failed !!!");
-      // }
-    },error=>{
-      console.log(error.message);
-    })
+
+    var currdate=new Date();
+
+    if(start<currdate){
+      alert("Select date on or after current date !!!");
+      $('#newEvent').modal('hide');
     }
+    else{
+      fetch('/book/newMeet',{
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+          // 'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        body: JSON.stringify({datetime : start , category : title})
+      })
+      .then((response)=>{
+        if(response.ok){
+            $cal.fullCalendar('renderEvent', eventData, true);
+            $('#newEvent').modal('hide');
+        }
+        // else{
+        //   throw new Error("Request Failed !!!");
+        // }
+      },error=>{
+        console.log(error.message);
+      })
+      }
+    }
+  
   else {
     alert("Title can't be blank. Please try again.")
   }
@@ -131,28 +140,58 @@ var newEvent = function(start) {
 //edit meeting
 
 var editEvent = function(calEvent) {
+  console.log(calEvent);
   $('select#editTitle').val(calEvent.title);
   $('#editEvent').modal('show');
 
-  
+
   //edit event
   $('#update').unbind();
   $('#update').on('click', function() {
-    var title = $('select#editTitle').val();
-    $('#editEvent').modal('hide');
-    var eventData;
-    if (title) {
-      calEvent.title = title;
-      console.log(calEvent);
-      $cal.fullCalendar('updateEvent', calEvent);
-    } else {
-    alert("Title can't be blank. Please try again.")
-    }
+    fetch(`/book/getmeeter/${calEvent.id}`)
+    //.then((resp) => resp.json()) // Transform the data into json
+    .then(function (response) {
+          if(response.ok){
+                var title = $('select#editTitle').val();
+                $('#editEvent').modal('hide');
+                if (title) {
+                  calEvent.title = title;
+                  console.log(calEvent);
+                } else {
+                alert("Title can't be blank. Please try again.")
+                }
+                fetch('/book/updateMeet',{
+                  method: 'POST',
+                  headers: {
+                    'Content-Type': 'application/json'
+                    // 'Content-Type': 'application/x-www-form-urlencoded',
+                  },
+                  body: JSON.stringify({meetId:calEvent.id , title:calEvent.title})
+                })
+                .then((response)=>{
+                  if(response.ok){
+                      $cal.fullCalendar('updateEvent', calEvent);
+                      $cal.fullCalendar('renderEvent', eventData, true);
+                      $('#newEvent').modal('hide');
+                  }
+                  // else{
+                  //   throw new Error("Request Failed !!!");
+                  // }
+                },error=>{
+                  console.log(error.message);
+                })
+
+
+          }
+          else{
+            alert('You can update only your own data!!!');
+            $('#editEvent').modal('hide');
+          }
+      });
   });
 
 
   //delete meeting
-
   $('#delete').on('click', function() {
     $('#delete').unbind();
     if (calEvent._id.includes("_fc")){
