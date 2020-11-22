@@ -194,13 +194,49 @@ var editEvent = function(calEvent) {
   //delete meeting
   $('#delete').on('click', function() {
     $('#delete').unbind();
-    if (calEvent._id.includes("_fc")){
-      $cal1.fullCalendar('removeEvents', [getCal1Id(calEvent._id)]);
-      $cal2.fullCalendar('removeEvents', [calEvent._id]);
-    } else {
-      $cal.fullCalendar('removeEvents', [calEvent._id]);
-    }
-    $('#editEvent').modal('hide');
+    fetch(`/book/getmeeter/${calEvent.id}`)
+    //.then((resp) => resp.json()) // Transform the data into json
+    .then(function (response) {
+          if(response.ok){
+                var title = $('select#editTitle').val();
+                $('#editEvent').modal('hide');
+                if (title) {
+                  calEvent.title = title;
+                  console.log(calEvent);
+                } else {
+                alert("Title can't be blank. Please try again.")
+                }
+                fetch('/book/deleteMeet',{
+                  method: 'POST',
+                  headers: {
+                    'Content-Type': 'application/json'
+                    // 'Content-Type': 'application/x-www-form-urlencoded',
+                  },
+                  body: JSON.stringify({meetId:calEvent.id})
+                })
+                .then((response)=>{
+                  if(response.ok){
+                      if (calEvent._id.includes("_fc")){
+                        $cal1.fullCalendar('removeEvents', [getCal1Id(calEvent._id)]);
+                        $cal2.fullCalendar('removeEvents', [calEvent._id]);
+                      } else {
+                        $cal.fullCalendar('removeEvents', [calEvent._id]);
+                      }
+                      $('#editEvent').modal('hide');
+                  }
+                  // else{
+                  //   throw new Error("Request Failed !!!");
+                  // }
+                },error=>{
+                  console.log(error.message);
+                })
+          }
+          else{
+            alert('You can delete only your own data!!!');
+            $('#editEvent').modal('hide');
+          }
+      });
+    
   });
 }
 

@@ -111,3 +111,20 @@ meetingRouter.post('/updateMeet', (req, res, next) => {
         }
     });
 });
+
+
+meetingRouter.post('/deleteMeet', (req, res, next) => {
+    conn.query('DELETE FROM meeting WHERE id = ?', [req.body.meetId], (err, result1) => {
+        if (err) {
+            next(err);
+        }
+        else {
+            // conn.query('SELECT * FROM cart WHERE id=?',[result1.insertId],(err,row)=>{
+            //     if(err)next(err);
+            //     res.status(201).send({cartItem:row});
+            // });
+            res.sendStatus(200);
+
+        }
+    });
+});
