@@ -1,6 +1,6 @@
 var events;
 
-fetch('/book/residential/getEvents')
+fetch('/book/getEvents')
 .then((resp) => resp.json()) // Transform the data into json
 .then(function (data) {
   events = function () {
@@ -101,9 +101,26 @@ var newEvent = function(start) {
         title: title,
         start: start
     };
-    $cal.fullCalendar('renderEvent', eventData, true);
-    $('#newEvent').modal('hide');
-
+    
+    fetch('/book/newMeet',{
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+        // 'Content-Type': 'application/x-www-form-urlencoded',
+      },
+      body: JSON.stringify({datetime : start , category : title})
+    })
+    .then((response)=>{
+      if(response.ok){
+          $cal.fullCalendar('renderEvent', eventData, true);
+          $('#newEvent').modal('hide');
+      }
+      // else{
+      //   throw new Error("Request Failed !!!");
+      // }
+    },error=>{
+      console.log(error.message);
+    })
     }
   else {
     alert("Title can't be blank. Please try again.")
@@ -111,21 +128,31 @@ var newEvent = function(start) {
   });
 }
 
+//edit meeting
+
 var editEvent = function(calEvent) {
   $('select#editTitle').val(calEvent.title);
   $('#editEvent').modal('show');
-  //$('#update').unbind();
-  // $('#update').on('click', function() {
-  //   var title = $('input#editTitle').val();
-  //   $('#editEvent').modal('hide');
-  //   var eventData;
-  //   if (title) {
-  //     calEvent.title = title
-  //     $cal.fullCalendar('updateEvent', calEvent);
-  //   } else {
-  //   alert("Title can't be blank. Please try again.")
-  //   }
-  // });
+
+  
+  //edit event
+  $('#update').unbind();
+  $('#update').on('click', function() {
+    var title = $('select#editTitle').val();
+    $('#editEvent').modal('hide');
+    var eventData;
+    if (title) {
+      calEvent.title = title;
+      console.log(calEvent);
+      $cal.fullCalendar('updateEvent', calEvent);
+    } else {
+    alert("Title can't be blank. Please try again.")
+    }
+  });
+
+
+  //delete meeting
+
   $('#delete').on('click', function() {
     $('#delete').unbind();
     if (calEvent._id.includes("_fc")){

@@ -1,11 +1,11 @@
-const express=require('express');
-module.exports=(req,res,next)=>{
-    if(req.user){
+const express = require('express');
+module.exports = (req, res, next) => {
+    if (req.user) {
         next();
     }
-    else{
+    else {
         console.log('you are not authenticated !!!');
-        req.session.returnTo = req.originalUrl; 
+        //req.session.returnTo = req.originalUrl; 
         res.redirect('/user/login');
     }
 }

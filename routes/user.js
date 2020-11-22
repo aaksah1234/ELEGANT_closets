@@ -15,7 +15,7 @@ userRouter.post('/signup', passport.authenticate('local-signup', {
 }));
 
 userRouter.get('/login',(req,res,next)=>{
-    res.render('login',{ message: req.flash('loginMessage') });
+    res.status(200).render('login',{ message: req.flash('loginMessage') });
 });
 
 userRouter.post('/login',passport.authenticate('local-login', {

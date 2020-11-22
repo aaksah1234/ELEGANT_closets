@@ -22,6 +22,7 @@
         <link href="/css/vendor/bootstrap-ie7.css" rel="stylesheet">
     <![endif]-->
 
+    
     <title>Consultation meetings</title>
 </head>
 
@@ -49,23 +50,11 @@
                 <form>
                     <div class="modal-body">
                         <div class="form-group">
-                            <label for="title" class="form-control-label">Title</label>
+                            <label for="title" class="form-control-label">Select desired category :</label>
                             <select class="form-control" id="title">
-
-                                <% if(category==='Residential'){ %>
-                                <option value="Residential" selected>Residential</option>
-                                <option value="Workspace" disabled>Workspace</option>
-                                <option value="Interior" disabled>Interior</option>
-                                <% }else if(category==='Workspace'){ %>
-                                <option value="Residential" disabled>Residential</option>
-                                <option value="Workspace" selected>Workspace</option>
-                                <option value="Interior" disabled>Interior</option>
-                                <% }else{ %>
-                                <option value="Residential" disabled>Residential</option>
-                                <option value="Workspace" disabled>Workspace</option>
-                                <option value="Interior" selected>Interior</option>
-                                <% } %>
-
+                                <option value="Residential">Residential</option>
+                                <option value="Workspace">Workspace</option>
+                                <option value="Interior">Interior</option>
                             </select>
                         </div>
                     </div>
@@ -91,8 +80,12 @@
                 <form>
                     <div class="modal-body">
                         <div class="form-group">
-                            <label for="title" class="form-control-label">Title</label>
-                            <input type="text" class="form-control" id="editTitle" disabled value="<%= category %>">
+                            <label for="title" class="form-control-label">Select desired category :</label>
+                            <select class="form-control" id="editTitle">
+                                <option value="Residential">Residential</option>
+                                <option value="Workspace">Workspace</option>
+                                <option value="Interior">Interior</option>
+                            </select>
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -105,7 +98,6 @@
         </div>
     </div>
 
-    
 
 </body>
 
