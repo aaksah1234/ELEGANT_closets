@@ -29,7 +29,7 @@ var initializeCalendar = function() {
       eventBackgroundColor: '#008080',
       editable: false,
       height: screen.height - 160,
-      timezone: 'India/Kolkata',
+      timezone: 'Asia/Kolkata',
     });
 }
 

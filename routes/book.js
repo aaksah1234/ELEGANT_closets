@@ -35,7 +35,7 @@ meetingRouter.get('/getEvents', (req, res, next) => {
             next(err);
         }
         else {
-            conn.query('SELECT * FROM meeting', function (err1, result2) {
+            conn.query('SELECT * FROM meeting',[req.user.id],function (err1, result2) {
                 if (err1) {
                     next(err1);
                 }
@@ -45,9 +45,10 @@ meetingRouter.get('/getEvents', (req, res, next) => {
                         let o = {
                             id: element.id,
                             title: element.category,
-                            start: element.date + 1,
+                            start: element.date,
                             end: null
                         };
+                        console.log(o);
                         output.push(o);
                     });
                     res.json(output);
