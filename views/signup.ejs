@@ -26,11 +26,11 @@
 		
 				<!-- show any messages that come back with authentication -->
 				<% if (message.length > 0) { %>
-					<div class="alert alert-danger" style="display: none;"><%= message %></div>
+					<div class="alert alert-danger"><%= message %></div>
 				<% } %>
 		
 				<!-- LOGIN FORM -->
-				<form action="/user/signup" method="post">
+				<form action="/user/signup" method="POST">
 					
 						<label>User-Email</label>
 						<input type="email" class="form-control" name="email">

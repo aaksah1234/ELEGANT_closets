@@ -19,10 +19,14 @@ userRouter.get('/login',(req,res,next)=>{
 });
 
 userRouter.post('/login',passport.authenticate('local-login', {
-    successRedirect : '/', // redirect to the secure profile section
+   // successRedirect : req.session.returnTo, // redirect to the secure profile section
     failureRedirect : '/user/login', // redirect back to the signup page if there is an error
     failureFlash : true, // allow flash messages  
-}));
+}),(req,res,next)=>{
+    if(req.user){
+        res.redirect(req.session.returnTo);
+    }
+});
 
 userRouter.get('/logout',(req,res,next)=>{
     if(!req.user){

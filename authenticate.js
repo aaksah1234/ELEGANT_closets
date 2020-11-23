@@ -5,7 +5,8 @@ module.exports = (req, res, next) => {
     }
     else {
         console.log('you are not authenticated !!!');
-        //req.session.returnTo = req.originalUrl; 
+        req.session.returnTo = req.originalUrl; 
+        console.log(req.originalUrl);
         res.redirect('/user/login');
     }
 }
