@@ -11,12 +11,14 @@ module.exports=shopRouter;
 shopRouter.get('/',(req,res,next)=>{
     conn.query('SELECT * FROM item',function(err,items){
         if(err){
+            console.log(err.message);
             next(err);
         }
         else{
             if(req.user){
                 conn.query('SELECT COUNT(*) AS count FROM cart WHERE user_id=?',[req.user.id],function(err,result){
                     if(err){
+                       
                         next(err);
                     }
                     else{
