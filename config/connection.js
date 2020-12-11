@@ -13,7 +13,11 @@ function startConnection() {
     });
     
     conn.connect((err)=>{
-        if (err) {
+        if (err.fatal) {
+            console.error('CONNECT FAILED FATAL: ', err.code,err);
+            startConnection();
+        }
+        else if (err) {
             console.error('CONNECT FAILED', err.code);
             startConnection();
         }
