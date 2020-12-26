@@ -11,11 +11,12 @@ conn=mysql.createConnection({
 });
 
 conn.connect((err)=>{
-    // if (err.fatal) {
-    //     console.error('CONNECT FAILED FATAL: ', err.code,err);
-    //     //startConnection();
-    // }
+    
     if (err) {
+        if (err.fatal) {
+            console.error('CONNECT FAILED FATAL: ', err.code,err);
+            //startConnection();
+        }
         console.error('CONNECT FAILED', err.code);
         //startConnection();
     }
