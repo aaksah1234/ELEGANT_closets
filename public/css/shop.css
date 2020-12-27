@@ -52,11 +52,14 @@
     width: 80%;
     margin: 2%;
     border: 0.06vw rgb(128, 128, 128) solid;
+    transition: box-shadow 0.4s linear;
+}
+.item:hover{
+    box-shadow: 0.05vw 0.05vw black, 0.1vw 0.1vw 0.5vw rgb(1, 63, 63), 0.1vw 0.1vw 0.5vw rgb(2, 158, 158);
 }
 .image{
     height: 70%;
     overflow: hidden;
-    
 }
 .image img{
     width: 100%;
@@ -83,18 +86,20 @@
     font-weight: 600;
     font-size: 1.2vw;
     margin-top: 0.6vw;
-    background-color:rgb(39, 202, 202);
-    color: black;
+    /* background-color:rgb(2, 98, 98); */
+    background:linear-gradient(-45deg,rgb(2, 158, 158),rgb(1, 63, 63),rgb(2, 158, 158));
+    color: white;
     border: 0.05vw grey solid;
     transition: background-color linear 0.5s;
 }
 .desc a:hover{
     width: 100%;
     background-color:rgb(146, 235, 235);
-    border: 0.1vw rgb(39, 202, 202) solid;
-    color: black;
+    /* background:linear-gradient(-45deg,rgb(1, 63, 63),rgb(2, 158, 158),rgb(1, 63, 63)); */
+    /* border: 0.1vw rgb(2, 100, 100) solid; */
+    color: white;
     text-decoration: none;
     padding: 2%;
-    font-weight: 700;
+    font-weight: 650;
     display: inline-block;
 }
