@@ -6,7 +6,7 @@ A full stack website for interior design/ architecture firm.
 The website is developed using Nodejs, Express & MySQL.
 
 
-For deployed version :  visit   
+For deployed version :  visit  https://elegant-closets.herokuapp.com/  
 
 
 This website incorporates :
